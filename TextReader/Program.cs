@@ -18,51 +18,25 @@ namespace TxtReader
 		static void Main()
 		{
             var AH = new TextAttributeHeader();
-            var file = File.ReadAllLines(@"C:\Users\akuznetsov\Documents\Visual Studio 2015\Projects\TxtReader\txtreader\monsters.txt");
+            //var file = File.ReadAllLines(@"C:\Users\akuznetsov\Documents\Visual Studio 2015\Projects\TxtReader\txtreader\monsters.txt");
+			var file = File.ReadAllLines(@"D:\!Repository\TextReader\TextReader\monsters.txt");
             AH.Name = "Навыки";
             AH.SearchScript = ScriptCollection.GetByName("Standart");
-            AH.SearchScript(AH,file.ToList<string>(),@":\/|- ");
+            AH.SearchScript(AH,file.ToList<string>(),new Settings(new Separators(@":\/|- ")));
+			AH.SearchScript(AH, file.ToList<string>(), null);
 
+            var c = AH.SearchScript(AH, file.ToList<string>(), null);
 
-			//var AH = new AttributeHeader();
-			//AH.S
-
-
-
-
-			//Reader reader = new Reader();
-			//reader.ReadFile(@"D:\!Repository\TxtReader\TxtReader\Monsters.txt");
-			//reader.Attributes = new AttributeCollection(true,EType.Mandatory,"Характеристики", "Шаг", "Защита");
-			//reader.Search();
-
-			//foreach(var record in reader.Data)
-			//{
-			//	foreach(var r in record)
-			//	{
-			//		Console.WriteLine(r.Text);
-			//	}
-			//}
-
-            //var collection = new AttributeCollection();
-            //collection = new AttributeCollection(EType.Multiple, new List<string>() { "Five", "Six", "Seven" });
-            //var input = new List<string>() { "No one live so far", "Five people eats", "Hi hi hi", "You are Seven eleven" };
-            //var output = new List<List<Line>>();
-
-            //collection["Five"].SearchScript = ScriptCollection.GetByName("WithLine");
-            //var s = ScriptCollection.GetNames();
-            ////collection["Six"].SearchScript = Script.WithName;
-            //collection["Seven"].SearchScript = Script.WithoutName;
-
-            //output.Add(collection["Five"].SearchScript(collection["Five"], input));
-            //output.Add(collection["Six"].SearchScript(collection["Six"], input));
-            //output.Add(collection["Seven"].SearchScript(collection["Seven"], input));			
-            //output.Add(collection["Seven"].SearchScript(collection["Seven"], input));
-            //collection[1].SearchScript(collection[1], input);
+            new List<LineNumText>().Add()
 
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
         }
-
+		private static (int code, string mes) tuple()
+		{
+			var a = (code: 5, mes: "555");
+			return (code: 1,  mes: "huh");
+		}
 	}
 }

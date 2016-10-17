@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using TextAttributes;
-using isTuple = System.Tuple<int, string>;
+
 
 namespace TextAttributes
 {
@@ -13,10 +13,10 @@ namespace TextAttributes
     /// <param name="Owner"></param>
     /// <param name="Input"></param>
     /// <param name="Settings"></param>
-    /// <returns></returns>
-    public delegate List<isTuple> SearchScript(TextAttributeHeader Owner, List<string> Input, object Settings);
+    /// <returns>List of: int - Line Number; string - Line Text<</returns>
+    public delegate List<LineNumText> SearchScript(TextAttributeHeader Owner, List<string> Input, Settings Settings);
 
-    public delegate void ChangeScript(TextAttribute Owner, object Settings);
+    public delegate void ChangeScript(TextAttribute Owner, List<string> Input, Settings Settings);
 
     public static class ScriptCollection
     {
@@ -46,74 +46,48 @@ namespace TextAttributes
                     throw e;
             }
         }
-        //public static List<isTuple> WithLine(TextAttributeHeader OwnerAttribute, List<string> Input, object Settings)
-        //{
-        //    var output = new List<isTuple>();
-        //    int num = 0;
-        //    foreach (var line in Input)
-        //    {
-        //        if (line.Contains(OwnerAttribute.Name))
-        //            output.Add(new isTuple(num, line.Replace(OwnerAttribute.Name, "")));
-        //        num++;
-        //    }
-        //    OwnerAttribute.Value = output;
-        //    return output;
-        //}
-        //public static List<isTuple> WithOutLine(TextAttributeHeader OwnerAttribute, List<string> Input, object Settings)
-        //{
-        //    var output = new List<isTuple>();
-        //    int num = 0;
-        //    foreach (var line in Input)
-        //    {
-        //        if (line.Contains(OwnerAttribute.Name))
-        //            output.Add(new isTuple(num, line));
-        //        num++;
-        //    }
-        //    OwnerAttribute.Value = output;
-        //    return output;
-        //}
-
 
         /// <summary>
         /// Catches only lines started with Attribute Name
-        /// Param "Settings" - string that contains separators for Attribute Name and text
+        /// 
         /// </summary>
-        /// <param name="OwnerAttribute"></param>
+        /// <param name="OwnerAttribute">Attribute wich for this script will be execute, and that have it's method</param>
         /// <param name="Input"></param>
-        /// <param name="Settings"></param>
-        /// <returns></returns>
-        public static List<isTuple> Standart(TextAttributeHeader OwnerAttribute, List<string> Input, object Settings = null)
+        /// <param name="Settings">if null - will search without separators</param>
+        /// <returns>Dictionary: Key - Line Number; Value - Line Text</returns>
+        public static List<LineNumText> Standart(TextAttributeHeader OwnerAttribute, List<string> Input, Settings Settings = null)
         {
-            var output = new List<isTuple>();
+            var output = new List<LineNumText>();
             int num = 0;
-            string settings;
-            try
-            {
-                settings = Settings as string;
-            }
-            catch
-            {
-                throw new Exception("Settings is not string type. Use string instead");
-            }
-            if (Settings == null)
+            if (Settings == null || Settings.Separators == null)
             {
                 foreach (var line in Input)
                 {
                     if (line.StartsWith(OwnerAttribute.Name))
-                        output.Add(new isTuple(num, line.Remove(0, OwnerAttribute.Name.Count()).Trim()));
+                        output.Add(
+                            num,
+                            line.Remove(
+                                0, OwnerAttribute.Name.Count())
+                        .Trim()
+                        );
                     num++;
                 }
             }
             else
-                foreach (var ch in settings)
+                foreach (var sep in Settings.Separators)
                 {
                     foreach (var line in Input)
                     {
-                        if (line.Contains(OwnerAttribute.Name + ch))
-                            output.Add(new isTuple(num, line.Remove(0, OwnerAttribute.Name.Count()+1).Trim()));
-                        num++;
+                        if (line.Contains(OwnerAttribute.Name + sep))
+                            output.Add(
+                                num,
+                                line.Remove(
+                                    0, OwnerAttribute.Name.Count() + 1)
+                            .Trim()
+                            );
+                            num++;
                     }
-                    OwnerAttribute.Value = output;
+                    OwnerAttribute.Separator = sep;
                 }
             return output;
         }

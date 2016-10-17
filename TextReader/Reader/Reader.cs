@@ -2,33 +2,22 @@
 using System.Linq;
 using System.IO;
 using TextAttributes;
+using System;
 
 namespace TxtReader.Reader
 {
-    /// <summary>
-    /// Класс для распознования и разложения в классы текста
-    /// </summary>
+
     public class Reader
     {
         public List<string> TextFile { protected set; get; }
 
         public List<TextAttributeHeader> AttributeHeaderCollection { get; set; }
 
-        public List<Record> RecordCollection { get; protected set; }
+        public Dictionary<TextAttributeHeader, List<LineNumText>> Interim { get; protected set; }
 
-        #region Constructors
+        public List<Record> RecordCollection  { get; protected set; }
 
-        public Reader() : this(null, null)
-        {
-
-        }
-
-        public Reader(string Path) : this(Path, null)
-        {
-
-        }
-
-        public Reader(string Path, List<TextAttributeHeader> AttributeHeaderCollection)
+        public Reader(string Path = null, List<TextAttributeHeader> AttributeHeaderCollection = null)
         {
             if (Path == null)
                 TextFile = new List<string>();
@@ -39,9 +28,8 @@ namespace TxtReader.Reader
             else
                 this.AttributeHeaderCollection = AttributeHeaderCollection;
             RecordCollection = new List<Record>();
+            Interim = new Dictionary<TextAttributeHeader, List<LineNumText>>();
         }
-
-        #endregion
 
         public void ReadFile(string Path)
         {

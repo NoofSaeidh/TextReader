@@ -11,33 +11,16 @@ namespace TextAttributes
     /// </summary>
     public class Settings
     {
-        public Type ActiveSeparator { get; set; }
+		public Separators Separators { get; set; }
 
-        public string CharSeparators { get; set; }
-
-        public List<string> StringSeparators { get; set; }
-
-        public int? CountSeparator { get; set; }
-
-        /// <summary>
-        /// Default Separator is space as a char
-        /// </summary>
-        public Settings(string CharSeparators = " ")
+        public Settings()
         {
-            ActiveSeparator = typeof(string);
-        }
-        public Settings(
-            string CharSeparators = null,
-            List<string> StringSeparators = null,
-            int? CountSeparators = null,
-            Type ActiveSeparator = null
-            )
-        {
-            this.ActiveSeparator = ActiveSeparator;
-            this.CharSeparators = CharSeparators;
-            this.StringSeparators = StringSeparators;
-            this.ActiveSeparator = ActiveSeparator;
+			Separators = new Separators();
         }
 
+		public Settings(Separators Separators = null) : this()
+		{
+			this.Separators = Separators;
+		}
     }
 }
