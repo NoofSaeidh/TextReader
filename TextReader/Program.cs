@@ -22,21 +22,15 @@ namespace TxtReader
 			var file = File.ReadAllLines(@"D:\!Repository\TextReader\TextReader\monsters.txt");
             AH.Name = "Навыки";
             AH.SearchScript = ScriptCollection.GetByName("Standart");
-            AH.SearchScript(AH,file.ToList<string>(),new Settings(new Separators(@":\/|- ")));
+            AH.Search(file.ToList<string>(),new Settings(new Separators(@":\/|- ")));
 			AH.SearchScript(AH, file.ToList<string>(), null);
 
-            var c = AH.SearchScript(AH, file.ToList<string>(), null);
+            var c = AH.Search(file.ToList<string>(), null);
 
-            new List<LineNumText>().Add()
 
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
         }
-		private static (int code, string mes) tuple()
-		{
-			var a = (code: 5, mes: "555");
-			return (code: 1,  mes: "huh");
-		}
 	}
 }

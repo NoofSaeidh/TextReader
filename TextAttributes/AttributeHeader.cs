@@ -6,15 +6,9 @@ namespace TextAttributes
     public class TextAttributeHeader : TextAttribute
     {
 		/// <summary>
-		/// Value for Header is always null!
+		/// Internal Value - Should use ChangeScript after SearchScript
 		/// </summary>
-		new public string Value
-		{
-			get
-			{
-				return null;
-			}
-		}
+		new public List<LineNumText> Value { get; internal set; }
 
 		/// <summary>
 		/// Separator that was used in text
@@ -26,6 +20,8 @@ namespace TextAttributes
 		/// </summary>
 		public SearchScript SearchScript { get; set; }
 
+        public ChangeScript ChangeScript { get; set; }
+
         public TextAttributeHeader() : base()
         {
 
@@ -36,5 +32,24 @@ namespace TextAttributes
             this.SearchScript = SearchScript;
         }
 
-    }
+		public List<LineNumText> Search(List<string> Text, Settings Settings)
+		{
+			if(SearchScript!=null)
+			{
+				Value = SearchScript(this, Text, Settings);
+				return Value;
+			}
+			throw new Exception("SearchScript null reference");
+		}
+
+		public TextAttribute Change(List<string> Text, Settings Settings, object FoundCollection = null) 
+		{
+			if (ChangeScript != null)
+			{
+				return ChangeScript(this, Text, Settings, FoundCollection);
+			}
+			throw new Exception("ChangeScript null reference");
+		}
+
+	}
 }

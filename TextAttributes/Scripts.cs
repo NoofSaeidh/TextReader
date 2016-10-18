@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -14,9 +15,16 @@ namespace TextAttributes
     /// <param name="Input"></param>
     /// <param name="Settings"></param>
     /// <returns>List of: int - Line Number; string - Line Text<</returns>
-    public delegate List<LineNumText> SearchScript(TextAttributeHeader Owner, List<string> Input, Settings Settings);
+    public delegate List<LineNumText> SearchScript(
+		TextAttributeHeader Owner, 
+		List<string> Input, 
+		Settings Settings);
 
-    public delegate void ChangeScript(TextAttribute Owner, List<string> Input, Settings Settings);
+	public delegate TextAttribute ChangeScript(
+		TextAttributeHeader Owner,
+		List<string> Input,
+		Settings Settings,
+		object SearchResults);
 
     public static class ScriptCollection
     {
@@ -55,7 +63,10 @@ namespace TextAttributes
         /// <param name="Input"></param>
         /// <param name="Settings">if null - will search without separators</param>
         /// <returns>Dictionary: Key - Line Number; Value - Line Text</returns>
-        public static List<LineNumText> Standart(TextAttributeHeader OwnerAttribute, List<string> Input, Settings Settings = null)
+        public static List<LineNumText> DefaultSearch(
+			TextAttributeHeader OwnerAttribute, 
+			List<string> Input, 
+			Settings Settings = null)
         {
             var output = new List<LineNumText>();
             int num = 0;
@@ -91,6 +102,23 @@ namespace TextAttributes
                 }
             return output;
         }
+
+		public static TextAttribute DefaultChange(
+			TextAttributeHeader Owner,
+			List<string> Input,
+			Settings Settings,
+			object SearchResults)
+		{
+			if(SearchResults != null)
+			{
+				if(SearchResults is IList)
+				{
+					var listResult = (IList)SearchResults;
+					listResult.
+					var typeResult = typeof(listResult)
+				}
+			}
+		}
     }
 }
 
