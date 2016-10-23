@@ -13,10 +13,12 @@ namespace TextAttributes
     {
         public int Num { get; set; }
         public string Text { get; set; }
-        public LineNumText(int Num, string Text)
+        public Separator Separator { get; set; }
+        public LineNumText(int Num, string Text,Separator Separator)
         {
             this.Num = Num;
             this.Text = Text;
+            this.Separator = Separator;
         }
         public LineNumText()
         {
@@ -34,9 +36,9 @@ namespace TextAttributes
         /// <param name="list"></param>
         /// <param name="Num">Line Number</param>
         /// <param name="Text">Line Text</param>
-        public static void Add(this List<LineNumText> list, int Num, string Text)
+        public static void Add(this List<LineNumText> list, int Num, string Text,Separator Separator)
         {
-            list.Add(new LineNumText(Num, Text));
+            list.Add(new LineNumText(Num, Text,Separator));
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.25802.0
+# Blend for Visual Studio 15
+VisualStudioVersion = 15.0.25719.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextAttributes", "TextAttributes\TextAttributes.csproj", "{7983C7B8-96ED-49CD-AD07-F66FFC3315CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextReader", "TextReader\TextReader.csproj", "{DA762607-C6FD-4A3F-A685-7CED98DF4A58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptCollection", "ScriptCollection\ScriptCollection.csproj", "{C86B5655-198A-43D2-8184-31733D870F15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DA762607-C6FD-4A3F-A685-7CED98DF4A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA762607-C6FD-4A3F-A685-7CED98DF4A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA762607-C6FD-4A3F-A685-7CED98DF4A58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C86B5655-198A-43D2-8184-31733D870F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C86B5655-198A-43D2-8184-31733D870F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C86B5655-198A-43D2-8184-31733D870F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C86B5655-198A-43D2-8184-31733D870F15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

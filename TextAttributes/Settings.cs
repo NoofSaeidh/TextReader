@@ -11,14 +11,14 @@ namespace TextAttributes
     /// </summary>
     public class Settings
     {
-		public Separators Separators { get; set; }
+		public List<Separator> Separators { get; set; }
 
         public Settings()
         {
-			Separators = new Separators();
+            Separators = new List<Separator>();
         }
 
-		public Settings(Separators Separators = null) : this()
+		public Settings(List<Separator> Separators = null) : this()
 		{
 			this.Separators = Separators;
 		}

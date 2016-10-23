@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using TxtReader.Reader;
 using TextAttributes;
 using System.IO;
+using ScriptCollection;
 
 namespace TxtReader
 {
@@ -17,15 +18,23 @@ namespace TxtReader
 		[STAThread]
 		static void Main()
 		{
-            var AH = new TextAttributeHeader();
-            //var file = File.ReadAllLines(@"C:\Users\akuznetsov\Documents\Visual Studio 2015\Projects\TxtReader\txtreader\monsters.txt");
-			var file = File.ReadAllLines(@"D:\!Repository\TextReader\TextReader\monsters.txt");
-            AH.Name = "Навыки";
-            AH.SearchScript = ScriptCollection.GetByName("Standart");
-            AH.Search(file.ToList<string>(),new Settings(new Separators(@":\/|- ")));
-			AH.SearchScript(AH, file.ToList<string>(), null);
+            var s = GetScript.DefaultSearch;
+            var file = File.ReadAllLines(@"D:\!Repository\TextReader\TextReader\monsters.txt").ToList();
 
-            var c = AH.Search(file.ToList<string>(), null);
+            var sScript = GetScript.DefaultSearch;
+            var cScript = GetScript.DefaultChange;
+
+            TextAttributeHeader.DefaultType = TextAttribute.EType.Mandatory;
+            TextAttributeHeader.DefaultDisplayed = true;
+            TextAttributeHeader.DefaultChangeScript = cScript;
+            TextAttributeHeader.DefaultSearchScript = sScript;
+
+            List<TextAttributeHeader> headers = new List<TextAttributeHeader>();
+            headers.Add("Навыки")
+                .Add("Характеристики")
+                .Add("Шаг");
+
+            headers.Search(file, null);
 
 
             //Application.EnableVisualStyles();

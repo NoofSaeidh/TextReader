@@ -25,27 +25,23 @@
 		/// </summary>
 		public bool Displayed { get; set; }
 
+        /// <summary>
+        /// Separator that was used in text
+        /// </summary>
+        public Separator Separator { get; set; }
+
         #region Constructors
         public TextAttribute()
 		{
 
 		}
-        public TextAttribute(string Name)
-        {
-            this.Name = Name;
-        }
-        public TextAttribute(string Name, EType Type, bool Displayed)
-        {
-            this.Name = Name;
-            this.Type = Type;
-            this.Displayed = Displayed;
-        }
-        public TextAttribute(string Name, EType Type, bool Displayed, string Value)
+        public TextAttribute(string Name = null, EType Type = default(EType), bool Displayed = default(bool), string Value = null, Separator Separator = null)
 		{
 			this.Value = Value;
 			this.Name = Name;
 			this.Type = Type;
 			this.Displayed = Displayed;
+            this.Separator = Separator;
 		}
         #endregion
 

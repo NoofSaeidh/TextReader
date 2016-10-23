@@ -13,8 +13,6 @@ namespace TxtReader.Reader
 
         public List<TextAttributeHeader> AttributeHeaderCollection { get; set; }
 
-        public Dictionary<TextAttributeHeader, List<LineNumText>> Interim { get; protected set; }
-
         public List<Record> RecordCollection  { get; protected set; }
 
         public Reader(string Path = null, List<TextAttributeHeader> AttributeHeaderCollection = null)
@@ -28,7 +26,6 @@ namespace TxtReader.Reader
             else
                 this.AttributeHeaderCollection = AttributeHeaderCollection;
             RecordCollection = new List<Record>();
-            Interim = new Dictionary<TextAttributeHeader, List<LineNumText>>();
         }
 
         public void ReadFile(string Path)
