@@ -13,21 +13,17 @@ namespace ScriptCollection
     public class Change
     {
         [ChangeMethod(Default = true)]
-        public static TextAttribute DefaultChange(
-            TextAttributeHeader Owner,
-            List<string> Input,
-            Settings Settings,
-            object SearchResults)
+        public static List<TextAttribute> DefaultChange(TextAttributeHeader Owner, Settings Settings)
         {
-            if (SearchResults != null)
-            {
-                if (SearchResults is IList)
-                {
-                    var listResult = (IList)SearchResults;
-                    var typeResult = listResult[0].GetType();
+            //if (SearchResults != null)
+            //{
+            //    if (SearchResults is IList)
+            //    {
+            //        var listResult = (IList)SearchResults;
+            //        var typeResult = listResult[0].GetType();
 
-                }
-            }
+            //    }
+            //}
             return null;
         }
     }

@@ -13,14 +13,7 @@ namespace TextAttributes
     /// <param name="Input"></param>
     /// <param name="Settings"></param>
     /// <returns>List of: int - Line Number; string - Line Text<</returns>
-    public delegate List<LineNumText> SearchScript(
-        TextAttributeHeader Owner,
-        List<string> Input,
-        Settings Settings);
+    public delegate List<LineNumText> SearchScript(TextAttributeHeader Owner, Settings Settings);
 
-    public delegate TextAttribute ChangeScript(
-        TextAttributeHeader Owner,
-        List<string> Input,
-        Settings Settings,
-        object SearchResults);
+    public delegate List<TextAttribute> ChangeScript(TextAttributeHeader Owner, Settings Settings);
 }

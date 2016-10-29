@@ -2,25 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TextAttributes
 {
     /// <summary>
-    /// Setting it is massive of parametrs using by SearchScript
+    /// Settings for scripts
     /// </summary>
     public class Settings
     {
-		public List<Separator> Separators { get; set; }
+		public Pattern Pattern { get; set; }
+
+        public List<string> Text { get; set; }
+
+        public List<TextAttributeHeader> SearchResults { get; set; }
 
         public Settings()
         {
-            Separators = new List<Separator>();
+
         }
 
-		public Settings(List<Separator> Separators = null) : this()
-		{
-			this.Separators = Separators;
+		public Settings(Pattern Pattern = null,List<string> Text = null, List<TextAttributeHeader> SearchResults = null)
+        {
+            this.Pattern = Pattern;
+            this.Text = Text;
+            this.SearchResults = SearchResults;
 		}
     }
 }

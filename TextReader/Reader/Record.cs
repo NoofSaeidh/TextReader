@@ -139,15 +139,6 @@ namespace TxtReader.Reader
 
         private List<TextAttribute> TextAttributeCollection { get; set; }
 
-        private void CheckForNoDublicates(TextAttribute TextAttribute)
-        {
-            foreach (var item in TextAttributeCollection)
-            {
-                if (TextAttribute.Name == item.Name)
-                    throw new Exception("There are already existing TextAttribute with specific name");
-            }
-        }
-
         #region Interfaces
 
         public int Count
@@ -241,13 +232,11 @@ namespace TxtReader.Reader
 
         public int Add(object value)
         {
-            CheckForNoDublicates(value as TextAttribute);
             return ((IList)TextAttributeCollection).Add(value);
         }
 
         public int Add(TextAttribute value)
         {
-            CheckForNoDublicates(value);
             return ((IList)TextAttributeCollection).Add(value);
         }
 

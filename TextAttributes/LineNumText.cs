@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TextAttributes
@@ -13,32 +14,25 @@ namespace TextAttributes
     {
         public int Num { get; set; }
         public string Text { get; set; }
-        public Separator Separator { get; set; }
-        public LineNumText(int Num, string Text,Separator Separator)
+
+        public LineNumText(int num, string text)
         {
-            this.Num = Num;
-            this.Text = Text;
-            this.Separator = Separator;
+            Num = num;
+            Text = text;
+
         }
         public LineNumText()
         {
 
         }
     }
-    /// <summary>
-    /// LineNumText extensions
-    /// </summary>
+
     public static class LineNumTextListExtensions
     {
-        /// <summary>
-        /// Add LineNumText
-        /// </summary>
-        /// <param name="list"></param>
-        /// <param name="Num">Line Number</param>
-        /// <param name="Text">Line Text</param>
-        public static void Add(this List<LineNumText> list, int Num, string Text,Separator Separator)
+
+        public static void Add(this List<LineNumText> list, int num, string text)
         {
-            list.Add(new LineNumText(Num, Text,Separator));
+            list.Add(new LineNumText(num, text));
         }
     }
 }

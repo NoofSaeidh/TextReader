@@ -12,7 +12,7 @@ namespace ScriptCollection
         public static List<string> GetSearchNames()
         {
             var names = new List<string>();
-            var mList = GetSearchScripts();
+            var mList = GetSearchScriptCollection();
             foreach (var m in mList)
                 names.Add(m.Name);
             return names;
@@ -22,7 +22,7 @@ namespace ScriptCollection
         {
             get
             {
-                var mList = GetSearchScripts();
+                var mList = GetSearchScriptCollection();
                 var name = mList.FirstOrDefault(method => method.GetCustomAttributes().Contains(new SearchMethod() { Default = true })).Name;
                 return GetSearchScript(name);
             }
@@ -32,7 +32,7 @@ namespace ScriptCollection
         {
             get
             {
-                var mList = GetChangeScripts();
+                var mList = GetChangeScriptCollection();
                 var name = mList.FirstOrDefault(method => method.GetCustomAttributes().Contains(new ChangeMethod() { Default = true })).Name;
                 return GetChangeScript(name);
             }
@@ -41,7 +41,7 @@ namespace ScriptCollection
         public static List<string> GetChangeNames()
         {
             var names = new List<string>();
-            var mList = GetChangeScripts();
+            var mList = GetChangeScriptCollection();
             foreach (var m in mList)
                 names.Add(m.Name);
             return names;
@@ -81,7 +81,7 @@ namespace ScriptCollection
             }
         }
 
-        private static List<MethodInfo> GetSearchScripts()
+        private static List<MethodInfo> GetSearchScriptCollection()
         {
             var methodList = new List<MethodInfo>();
 
@@ -101,7 +101,7 @@ namespace ScriptCollection
             return methodList;
         }
 
-        private static List<MethodInfo> GetChangeScripts()
+        private static List<MethodInfo> GetChangeScriptCollection()
         {
             var methodList = new List<MethodInfo>();
 

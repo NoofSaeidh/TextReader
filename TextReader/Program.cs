@@ -7,6 +7,7 @@ using TxtReader.Reader;
 using TextAttributes;
 using System.IO;
 using ScriptCollection;
+using System.Text.RegularExpressions;
 
 namespace TxtReader
 {
@@ -34,8 +35,11 @@ namespace TxtReader
                 .Add("Характеристики")
                 .Add("Шаг");
 
-            headers.Search(file, null);
+            var searchSettings = new Settings(Text: file);
+            headers.Search(searchSettings);
 
+            var changeSettings = new Settings(Text: file, SearchResults: headers);
+            headers.Change(changeSettings);
 
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);

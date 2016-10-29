@@ -13,10 +13,12 @@ namespace TextAttributes
 
         public static ChangeScript DefaultChangeScript = null;
 
+
+
 		/// <summary>
 		/// Internal Value - Should use ChangeScript after SearchScript
 		/// </summary>
-		new public List<LineNumText> Value { get; internal set; }
+		new public List<LineNumText> Value { get; set; }
 
         /// <summary>
 		/// Script for search this attribute in text
@@ -58,21 +60,21 @@ namespace TextAttributes
                 this.ChangeScript = ChangeScript;
         }
 
-		public List<LineNumText> Search(List<string> Text, Settings Settings)
+		public List<LineNumText> Search(Settings Settings)
 		{
 			if(SearchScript!=null)
 			{
-				Value = SearchScript(this, Text, Settings);
+				Value = SearchScript(this, Settings);
 				return Value;
 			}
 			throw new Exception("SearchScript null reference");
 		}
 
-		public TextAttribute Change(List<string> Text, Settings Settings, object SearchResult = null) 
+		public List<TextAttribute> Change(Settings Settings) 
 		{
 			if (ChangeScript != null)
 			{
-				return ChangeScript(this, Text, Settings, SearchResult);
+				return ChangeScript(this, Settings);
 			}
 			throw new Exception("ChangeScript null reference");
 		}
@@ -93,12 +95,31 @@ namespace TextAttributes
             return List;
         }
 
-        public static List<List<LineNumText>> Search(this List<TextAttributeHeader> List, List<string> Text, Settings Settings)
+        public static List<List<LineNumText>> Search(this List<TextAttributeHeader> List, Settings Settings)
         {
             var listlist = new List<List<LineNumText>>();
             foreach (var header in List)
             {
-                listlist.Add(header.Search(Text, Settings));
+                listlist.Add(header.Search(Settings));
+            }
+            return listlist;
+        }
+
+        public static List<List<LineNumText>> Search(this List<TextAttributeHeader> List, List<string> Text)
+        {
+            var listlist = new List<List<LineNumText>>();
+            foreach (var header in List)
+            {
+                listlist.Add(header.Search(new Settings(Text: Text)));
+            }
+            return listlist;
+        }
+        public static List<List<TextAttribute>> Change(this List<TextAttributeHeader> List, Settings Settings)
+        {
+            var listlist = new List<List<TextAttribute>>();
+            foreach (var header in List)
+            {
+                listlist.Add(header.Change(Settings));
             }
             return listlist;
         }

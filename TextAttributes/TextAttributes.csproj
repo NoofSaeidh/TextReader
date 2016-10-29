@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Separator.cs" />
+    <Compile Include="Pattern.cs" />
     <Compile Include="SriptDelegates.cs" />
     <Compile Include="TextAttribute.cs" />
     <Compile Include="TextAttributeHeader.cs" />

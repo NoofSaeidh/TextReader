@@ -1,4 +1,6 @@
-﻿namespace TextAttributes
+﻿using System.Text.RegularExpressions;
+
+namespace TextAttributes
 {
     /// <summary>
     /// Attribute it is a parametr of Record
@@ -26,22 +28,22 @@
 		public bool Displayed { get; set; }
 
         /// <summary>
-        /// Separator that was used in text
+        /// Pattern for recover Attibute to original text
         /// </summary>
-        public Separator Separator { get; set; }
+        public Pattern RecoverPattern { get; set; }
 
         #region Constructors
         public TextAttribute()
 		{
 
 		}
-        public TextAttribute(string Name = null, EType Type = default(EType), bool Displayed = default(bool), string Value = null, Separator Separator = null)
+        public TextAttribute(string Name = null, EType Type = default(EType), bool Displayed = default(bool), string Value = null, Pattern RecoverPattern = null)
 		{
 			this.Value = Value;
 			this.Name = Name;
 			this.Type = Type;
 			this.Displayed = Displayed;
-            this.Separator = Separator;
+            this.RecoverPattern = RecoverPattern;
 		}
         #endregion
 
