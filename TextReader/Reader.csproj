@@ -7,11 +7,12 @@
     <ProjectGuid>{DA762607-C6FD-4A3F-A685-7CED98DF4A58}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TxtReader</RootNamespace>
-    <AssemblyName>TxtReader</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Reader</RootNamespace>
+    <AssemblyName>Reader</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,7 +60,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\Reader.cs" />
-    <Compile Include="Reader\Record.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -68,6 +68,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -87,9 +88,9 @@
       <Project>{c86b5655-198a-43d2-8184-31733d870f15}</Project>
       <Name>ScriptCollection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TextAttributes\TextAttributes.csproj">
+    <ProjectReference Include="..\TextAttributes\Core.csproj">
       <Project>{7983c7b8-96ed-49cd-ad07-f66ffc3315ca}</Project>
-      <Name>TextAttributes</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

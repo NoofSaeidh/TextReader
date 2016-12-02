@@ -4,7 +4,8 @@ using System.Linq;
 using System.Collections;
 using TextAttributes;
 
-namespace TxtReader.Reader
+
+namespace Records
 {
     /// <summary>
     /// Record - the main essence of text that contains many parametrs.

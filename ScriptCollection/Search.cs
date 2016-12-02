@@ -4,52 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using TextAttributes;
+using TextReader.Core.Common;
+using TextReader.Core.Script;
+using TextReader.Core;
+using TextReader.Core.Script.Settings;
 
 namespace ScriptCollection
 {
 
-    [SearchCollection]
-    public class Search
+    public static class SearchCollection
     {
 
-        /// <summary>
-        /// Catches only lines started with Attribute Name
-        /// </summary>
-        /// <param name="owner">Attribute wich for this script will be execute, and that have it's method</param>
-        /// <param name="settings">Notice that text in settings</param>
-        /// <returns>Dictionary: Key - Line Number; Value - Line Text</returns>
-        [SearchMethod(Default = true)]
-        public static List<LineNumText> DefaultSearch(TextAttributeHeader owner, Settings settings)
+		[Script(/*Type = typeof(Search) ,*/Default = true, UserName ="Default script", UserDescription = "Script search for something")]
+		public static void DefaultSearch(Search settings)
         {
-            var output = new List<LineNumText>();
-            var Input = settings.Text;
+            //var output = new List<LineNum>();
+            //var Input = settings.Text;
+            //var Pattern = settings.Pattern!=null?settings.Pattern: new Pattern("@@@: *");
+            //var pattern = Pattern.Substitute(owner.Name);
 
-            //if (Settings.Regexs == null)
+            //int num = 0;
+            //foreach (var line in Input)
             //{
-            //    foreach (var line in Input)
+            //    if(Regex.IsMatch(line,pattern))
             //    {
-            //        if (line.StartsWith(OwnerAttribute.Name))
-            //            output.Add(num,line.Remove(0, OwnerAttribute.Name.Count()).Trim(), new Regex("@@@ $$$"));
-            //        num++;
+            //        output.Add(num, Regex.Replace(line, pattern, ""));
             //    }
+            //    num++;
             //}
-            //else
-            var Pattern = settings.Pattern!=null?settings.Pattern: new Pattern("@@@: *");
-            var pattern = Pattern.Substitute(owner.Name);
+            //owner.RecoverPattern = Pattern;
 
-            int num = 0;
-            foreach (var line in Input)
-            {
-                if(Regex.IsMatch(line,pattern))
-                {
-                    output.Add(num, Regex.Replace(line, pattern, ""));
-                }
-                num++;
-            }
-            owner.RecoverPattern = Pattern;
-
-            return owner.Value = output;
+            //return owner.Value = output;
         }
     }
 }

@@ -7,10 +7,11 @@
     <ProjectGuid>{7983C7B8-96ED-49CD-AD07-F66FFC3315CA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TextAttributes</RootNamespace>
-    <AssemblyName>TextAttributes</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>TextReader.Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,13 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pattern.cs" />
-    <Compile Include="SriptDelegates.cs" />
-    <Compile Include="TextAttribute.cs" />
-    <Compile Include="TextAttributeHeader.cs" />
-    <Compile Include="LineNumText.cs" />
+    <Compile Include="Script\Settings\ISettings.cs" />
+    <Compile Include="Script\ScriptAttributes.cs" />
+    <Compile Include="Script\ScriptReflection.cs" />
+    <Compile Include="Common\Pattern.cs" />
+    <Compile Include="Script\Delegates.cs" />
+    <Compile Include="Script\Settings\Transform.cs" />
+    <Compile Include="Common\TextException.cs" />
+    <Compile Include="Attribute.cs" />
+    <Compile Include="AttributeHeader.cs" />
+    <Compile Include="Common\LineNum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Record.cs" />
+    <Compile Include="Script\Settings\Search.cs" />
+    <Compile Include="Reader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

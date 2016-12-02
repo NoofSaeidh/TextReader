@@ -1,11 +1,12 @@
 ﻿using System.Text.RegularExpressions;
+using TextReader.Core.Common;
 
-namespace TextAttributes
+namespace TextReader.Core
 {
     /// <summary>
     /// Attribute it is a parametr of Record
     /// </summary>
-    public class TextAttribute
+    public class Attribute
 	{
         /// <summary>
         /// Value, etc. Text that corresponding to Attribute
@@ -33,11 +34,11 @@ namespace TextAttributes
         public Pattern RecoverPattern { get; set; }
 
         #region Constructors
-        public TextAttribute()
+        public Attribute()
 		{
 
 		}
-        public TextAttribute(string Name = null, EType Type = default(EType), bool Displayed = default(bool), string Value = null, Pattern RecoverPattern = null)
+        public Attribute(string Name = null, EType Type = default(EType), bool Displayed = default(bool), string Value = null, Pattern RecoverPattern = null)
 		{
 			this.Value = Value;
 			this.Name = Name;

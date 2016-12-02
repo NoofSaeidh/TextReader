@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TextAttributes
+namespace TextReader.Core.Common
 {
     /// <summary>
     /// For Text use Wildcards for Attribute Name specify Attribute Mark
