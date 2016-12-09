@@ -100,7 +100,7 @@ namespace TextReader.Core.Script
 
         #endregion
 
-        #region Additional gets
+        #region Additional Gets
 
         public Script<T> GetScriptByActualName<T>(string actualName) where T : Settings.ISettings
         {
@@ -148,52 +148,108 @@ namespace TextReader.Core.Script
 
         #endregion
 
+        #region Try Gets
 
-        //public static List<string> GetNames<T>()
+        //public List<ScriptHandler> TryGetHandlers<T>() where T : Settings.ISettings
         //{
-        //	var names = new List<string>();
-        //	var mList = GetCollection<T>();
-        //	foreach (var m in mList)
-        //		names.Add(m.Name);
-        //	return names;
+        //    try
+        //    {
+        //        return scripts.Where(s => s.Value.Type == typeof(T)).Select(x => x.Value as ScriptHandler).ToList();
+        //    }
+        //    catch
+        //    {
+        //        return null;
+        //    }
         //}
 
-        //public Default<T>()
-        //{
-        //	var mList = GetCollection<T>();
-        //	var name = mList.FirstOrDefault(method => method.GetCustomAttributes().Contains(new DefaultAttribute { Type = typeof(T) })||
-        //		method.GetCustomAttributes().Contains(new DefaultAttribute { Type = null })).Name;
-        //	return GetSearchScript(name);
-        //}
+        public ScriptHandler TryGetDefaultHandler<T>() where T : Settings.ISettings
+        {
+            try
+            {
+                return scripts.Where(s => s.Value.Type == typeof(T)).First(x => x.Value.Default).Value;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Script<T> TryGetDefaultScript<T>() where T : Settings.ISettings
+        {
+            try
+            {
+                return GetScript<T>(GetDefaultHandler<T>());
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Script<T> TryGetScript<T>(ScriptHandler script) where T : Settings.ISettings
+        {
+            try
+            {
+                return (Script<T>)Delegate.CreateDelegate(typeof(Script<T>), script.Method);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Script<T> TryGetScriptByActualName<T>(string actualName) where T : Settings.ISettings
+        {
+            try
+            {
+                return GetScript<T>(this[actualName]);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
 
-        //public SearchScript DefaultSearch
-        //{
-        //	get
-        //	{
-        //		var mList = GetSearchScriptCollection();
-        //		var name = mList.FirstOrDefault(method => method.GetCustomAttributes().Contains(new SearchMethod() { Default = true })).Name;
-        //		return GetSearchScript(name);
-        //	}
-        //}
+        public Script<T> TryGetScriptByUserName<T>(string userName) where T : Settings.ISettings
+        {
+            try
+            {
+                return GetScript<T>(GetHandlerByUserName(userName));
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
-        //public T GetScript<T>(string Name)
-        //{
-        //	try
-        //	{
-        //		var M = typeof(T).GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Static | BindingFlags.Public).
-        //			Single(x => x.Name == Name);
-        //		return Delegate.CreateDelegate(typeof(T), M);
-        //	}
-        //	catch (Exception e)
-        //	{
-        //		if (e.Message == "Sequence contains no matching element")
-        //			throw new System.Exception(string.Format("Script with name {0} does not exist", Name));
-        //		else
-        //			throw e;
-        //	}
-        //}
+        public ScriptHandler TryGetHandlerByActualName(string actualName)
+        {
+            try
+            {
+                return this[actualName];
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
+        public ScriptHandler TryGetHandlerByUserName(string userName)
+        {
+            try
+            {
+                return scripts.First(s => s.Value.UserName == userName).Value;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
+
+        #endregion
 
     }
 }

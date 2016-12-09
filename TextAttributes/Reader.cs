@@ -19,9 +19,7 @@ namespace TextReader.Core
         public List<AttributeHeader> AttributeHeaders { get; set; }
 
         private Transform _settings;
-        /// <summary>
-        /// No need to specify Parent for setting. It is assigns in setter 
-        /// </summary>
+
         public Transform Settings
         {
             get
@@ -35,6 +33,8 @@ namespace TextReader.Core
                     _settings.Parent = this;
             }
         }
+
+        
 
         #endregion
 

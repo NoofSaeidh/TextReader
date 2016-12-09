@@ -11,13 +11,13 @@ namespace TextReader.Core.Script.Settings
 
     public class Transform : ISettings<Reader>
     {
-        public Reader Parent { get; set;}
+        public Reader Parent { get; internal set;}
 
         public List<AttributeHeader> SearchResults { get; set; }
 
-        public List<string> Text { get; set; }
+        public Text Text { get; set; }
 
-        public Transform(List<AttributeHeader> searchResults = null, List<string> text = null)
+        public Transform(List<AttributeHeader> searchResults = null, Text text = null)
         {
             SearchResults = searchResults;
             Text = text;

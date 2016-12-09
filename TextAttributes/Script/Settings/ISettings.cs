@@ -8,7 +8,7 @@ namespace TextReader.Core.Script.Settings
 {
     public interface ISettings<T> : ISettings
     {
-        T Parent { get; set; }
+        T Parent { get; }
     }
     //workaround
     //class should inherit from both interfaces

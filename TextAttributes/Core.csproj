@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Text.cs" />
     <Compile Include="Script\Settings\ISettings.cs" />
     <Compile Include="Script\ScriptAttributes.cs" />
     <Compile Include="Script\ScriptReflection.cs" />

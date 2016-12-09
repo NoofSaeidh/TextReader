@@ -16,16 +16,16 @@ namespace TextReader.Core.Script.Settings
     {
         public AttributeHeader Parent { get; set; }
 
-		public Pattern Pattern { get; set; }
+		public Pattern Pattern { get; internal set; }
 
-        public List<string> Text { get; set; }
+        public Text Text { get; set; }
 
         public Search()
         {
 
         }
 
-		public Search(Pattern pattern = null,List<string> text = null)
+		public Search(Pattern pattern = null,Text text = null)
         {
             Pattern = pattern;
             Text = text;
