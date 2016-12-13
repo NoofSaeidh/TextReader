@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.25920.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "TextAttributes\Core.csproj", "{7983C7B8-96ED-49CD-AD07-F66FFC3315CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reader", "TextReader\Reader.csproj", "{DA762607-C6FD-4A3F-A685-7CED98DF4A58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextReader", "TextReader\TextReader.csproj", "{DA762607-C6FD-4A3F-A685-7CED98DF4A58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptCollection", "ScriptCollection\ScriptCollection.csproj", "{C86B5655-198A-43D2-8184-31733D870F15}"
 EndProject

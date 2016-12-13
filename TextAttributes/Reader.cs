@@ -18,34 +18,34 @@ namespace TextReader.Core
 
         public List<AttributeHeader> AttributeHeaders { get; set; }
 
-        private Transform _settings;
+        public ReaderSettings Settings { get; set; }
 
-        public Transform Settings
+        private Transform _transform;
+
+        protected Transform TransformSettings
         {
             get
             {
-                return _settings;
+                return _transform;
             }
             set
             {
-                _settings = value;
+                _transform = value;
                 if (!(value is null))
-                    _settings.Parent = this;
+                    _transform.Parent = this;
             }
         }
 
-        
-
         #endregion
 
-        #region Script exucutin
+        #region Script exucuting
 
         public void Transform(Transform settings)
         {
             if (Settings is null) throw new TextException("Settings null reference");
 
             Clear();
-            Settings = settings;
+            TransformSettings = settings;
             TransformScript(settings);
 
         }
@@ -53,14 +53,13 @@ namespace TextReader.Core
         {
             if (TransformScript is null) throw new TextException("TransformScript null reference");
 
-            Transform(Settings);
+            Transform(TransformSettings);
         }
 
         public void Search(Search settings)
         {
             AttributeHeaders.Search(settings);
         }
-
         public void Search()
         {
             AttributeHeaders.Search();
@@ -94,5 +93,7 @@ namespace TextReader.Core
         {
             base.Add(record.Key.Name, record);
         }
+
+        //public IEnumerable<Record> 
     }
 }

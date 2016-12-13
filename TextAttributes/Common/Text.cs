@@ -17,8 +17,8 @@ namespace TextReader.Core.Common
 
         public void Load()
         {
-            this.Clear();
-            this.AddRange(File.ReadAllLines(FilePath).ToList());
+            base.Clear();
+            base.AddRange(File.ReadAllLines(FilePath).ToList());
         }
 
         public void Load(string filePath)
@@ -53,7 +53,7 @@ namespace TextReader.Core.Common
                 {
                     if (Regex.IsMatch(line, pattern))
                     {
-                        this.RemoveAt(i);
+                        base.RemoveAt(i);
                     }
                     else i++;
                 }                

@@ -47,6 +47,7 @@
     <Compile Include="Script\ScriptReflection.cs" />
     <Compile Include="Common\Pattern.cs" />
     <Compile Include="Script\Delegates.cs" />
+    <Compile Include="Script\Settings\ReaderSettings.cs" />
     <Compile Include="Script\Settings\Transform.cs" />
     <Compile Include="Common\TextException.cs" />
     <Compile Include="Attribute.cs" />

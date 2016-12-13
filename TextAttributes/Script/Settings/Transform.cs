@@ -17,7 +17,7 @@ namespace TextReader.Core.Script.Settings
 
         public Text Text { get; set; }
 
-        public Transform(List<AttributeHeader> searchResults = null, Text text = null)
+        public Transform(Text text = null, List < AttributeHeader> searchResults = null)
         {
             SearchResults = searchResults;
             Text = text;
