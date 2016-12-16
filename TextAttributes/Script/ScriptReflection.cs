@@ -30,6 +30,7 @@ namespace TextReader.Core.Script
         public void Load()
         {
             scripts = new Dictionary<string, ScriptHandler>();
+            //TODO: different types with same name should be allowed
             var nameCheck = new List<string>();
             foreach (var type in Assembly.GetTypes())
             {

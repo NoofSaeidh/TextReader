@@ -28,7 +28,7 @@ namespace TextReader.Core
             set
             {
                 _settings = value;
-                if (!(value is null))
+                if (value != null)
                     _settings.Parent = this;
             }
         }
@@ -84,26 +84,27 @@ namespace TextReader.Core
 
         public void Search(Search settings)
         {
-            if (SearchScript is null) throw new TextException("SearchScript null reference");
+            //if (SearchScript is null) throw new TextException("SearchScript null reference");
             Settings = settings;
-            SearchScript(Settings);
+            Search();
         }
 
         public void Search()
         {
             if (Settings is null) throw new TextException("DefaultSetting null reference");
-            Search(Settings);
+            SearchScript?.Invoke(Settings);
         }
     }
 
     public static class AttributeHeaderListExtensions
     {
         public static List<AttributeHeader> Add(this List<AttributeHeader> list, string name, Attribute.EType? type = null,
-            bool? displayed = null, Script<Search> searchScript = null)
+            bool? displayed = null, Search settings = null, Script<Search> searchScript = null)
         {
             var header = new AttributeHeader(name);
             if (type != null) header.Type = (Attribute.EType)type;
             if (displayed != null) header.Displayed = (bool)displayed;
+            if (settings != null) header.Settings = settings;
             if (searchScript != null) header.SearchScript = searchScript;
             list.Add(header);
             return list;

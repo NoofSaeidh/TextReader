@@ -26,22 +26,22 @@ namespace TextReader
             var script = new ScriptReflection(assambly);
             var defS = script.TryGetDefaultScript<Search>();
             var defT = script.TryGetDefaultScript<Transform>();
-
+            var set = new Search(new Pattern("Характеристика@@@"));
 
             var aHeaders = new List<AttributeHeader>()
-                .Add("Name", Core.Attribute.EType.Mandatory, false)
-                .Add("Primary", Core.Attribute.EType.Mandatory, true, defS);
+                .Add("Name", Core.Attribute.EType.Mandatory, false,set)
+                .Add("Primary", Core.Attribute.EType.Mandatory, true, set, defS);
 
             var reader = new Reader()
             {
                 AttributeHeaders = aHeaders,
                 Settings = new ReaderSettings()
                 {
-                    Text = new Text("C:\\asdasd.txt")
+                    Text = new Text(Environment.CurrentDirectory.Replace("bin\\Debug", "monsters.txt"))
                 },
                 TransformScript = defT
             };
-            reader.SearchAndTransform();
+            reader.Search();
             //var reader = new Reader()
             //{
             //    TransformScript = script.TryGetDefaultScript<Transform>(),

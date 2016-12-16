@@ -58,10 +58,12 @@ namespace TextReader.Core
 
         public void Search(Search settings)
         {
+            SetSearchText();
             AttributeHeaders.Search(settings);
         }
         public void Search()
         {
+            SetSearchText();
             AttributeHeaders.Search();
         }
 
@@ -87,6 +89,10 @@ namespace TextReader.Core
             Transform(settings);
         }
 
+        private void SetSearchText()
+        {
+            AttributeHeaders.ForEach(h => h.Settings.Text = Settings.Text);
+        }
         #endregion
 
         public void Add(Record record)
